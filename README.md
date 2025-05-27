@@ -8,10 +8,10 @@ CREATE TABLE Students (
 );
 INSERT INTO Students (name, age, email) VALUES
 ('Manoj Kumar', 22, 'manoj@example.com'),
-('Aarav Singh', 20, 'aarav.singh@example.com'),
-('Priya Sharma', 21, 'priya.sharma@example.com'),
-('Rahul Verma', 23, 'rahul.verma@example.com'),
-('Neha Patel', 22, 'neha.patel@example.com'),
+('Midhun', 20, 'midhun@example.com'),
+('Pranay', 21, 'pranay@example.com'),
+('Rahul', 23, 'rahul@example.com'),
+('Naman', 22, 'naman@example.com'),
 ('Vikram Das', 24, 'vikram.das@example.com');
 CREATE TABLE Courses (
     course_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -41,6 +41,7 @@ INSERT INTO Enrollments (student_id, course_id) VALUES
 (4, 3),  -- Rahul  → Database Systems
 (5, 4),  -- Naman→ Cloud Computing
 (1, 5);  -- Manoj Reddy→ Python for Data Science
+(6, 2);  -- Vikram Das → Web Development
 SELECT 
     s.name AS student_name,
     c.course_name,
@@ -49,3 +50,11 @@ SELECT
 FROM Enrollments e
 JOIN Students s ON e.student_id = s.id
 JOIN Courses c ON e.course_id = c.course_id;
+SELECT 
+    s.name AS student_name,
+    c.course_name,
+    c.instructor,
+    e.enrollment_date
+FROM Students s
+LEFT JOIN Enrollments e ON s.id = e.student_id
+LEFT JOIN Courses c ON e.course_id = c.course_id;
